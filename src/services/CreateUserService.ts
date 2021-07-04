@@ -2,20 +2,17 @@ import { getCustomRepository } from 'typeorm'
 
 import { UsersRepositories } from '../repositories/UsersRepositories'
 
-interface User {
+interface UserProps {
   name: string
   email: string
   admin?: boolean
 }
 
 class CreateUserService {
-
-  async execute({ name, email, admin }: User) {
+  async execute({ name, email, admin }: UserProps) {
     const usersRepository = getCustomRepository(UsersRepositories)
 
-    console.log("Email", email)
-
-    if(!email) {
+    if (!email) {
       throw new Error('Email incorrect!')
     }
 
@@ -23,7 +20,7 @@ class CreateUserService {
       email
     })
 
-    if(userAlreadyExists) {
+    if (userAlreadyExists) {
       throw new Error('User already exists!')
     }
 
