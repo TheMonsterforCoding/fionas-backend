@@ -14,14 +14,38 @@ class User {
   readonly id: string
 
   @Column()
-  name: string
+  cpf: string
 
   @Column()
-  email: string
+  avatar: string
+
+  @Column()
+  firstName: string
+
+  @Column()
+  lastName: string
+
+  @Column()
+  genderId: boolean
+
+  @Column()
+  address: string
+
+  @Column()
+  mail: string
+
+  @Column()
+  mobileNumber: string
 
   @Exclude()
   @Column()
   password: string
+
+  @Column()
+  yearOfBirth: string
+
+  @Column()
+  state: boolean
 
   @Column()
   admin: boolean

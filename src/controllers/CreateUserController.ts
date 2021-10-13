@@ -3,14 +3,35 @@ import { CreateUserService } from '../services/CreateUserService'
 
 class CreateUserController {
   async create(request: Request, response: Response) {
-    const { name, email, password, admin } = request.body
+    const {
+      cpf,
+      avatar,
+      firstName,
+      lastName,
+      genderId,
+      password,
+      yearOfBirth,
+      address,
+      mail,
+      mobileNumber,
+      state,
+      admin
+     } = request.body
 
     const createUserService = new CreateUserService()
 
     const user = await createUserService.execute({
-      name,
-      email,
+      cpf,
+      avatar,
+      firstName,
+      lastName,
+      genderId,
       password,
+      yearOfBirth,
+      address,
+      mail,
+      mobileNumber,
+      state,
       admin
     })
 

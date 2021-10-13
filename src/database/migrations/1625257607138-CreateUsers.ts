@@ -12,16 +12,49 @@ export class CreateUsers1625257607138 implements MigrationInterface {
             isPrimary: true
           },
           {
-            name: 'name',
+            name: 'cpf',
             type: 'varchar'
           },
           {
-            name: 'email',
+            name: 'avatar',
             type: 'varchar'
+          },
+          {
+            name: 'firstName',
+            type: 'varchar'
+          },
+          {
+            name: 'lastName',
+            type: 'varchar'
+          },
+          {
+            name: 'genderId',
+            type: 'boolean'
           },
           {
             name: 'password',
             type: 'varchar'
+          },
+          {
+            name: 'yearOfBirth',
+            type: 'varchar'
+          },
+          {
+            name: 'address',
+            type: 'varchar'
+          },
+          {
+            name: 'mail',
+            type: 'varchar'
+          },
+          {
+            name: 'mobileNumber',
+            type: 'varchar'
+          },
+          {
+            name: 'state',
+            type: 'boolean',
+            default: false
           },
           {
             name: 'admin',

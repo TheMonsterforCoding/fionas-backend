@@ -5,34 +5,34 @@ import { sign } from 'jsonwebtoken'
 import { UsersRepositories } from '../repositories/UsersRepositories'
 
 interface UserProps {
-  email: string
+  cpf: string
   password: string
 }
 
 class AuthenticateUserService {
-  async execute({ email, password }: UserProps) {
+  async execute({ cpf, password }: UserProps) {
     const usersRepositories = getCustomRepository(UsersRepositories)
 
-    // Verificar si email existe
+    // Verificar si cpf existe
     const userAlreadyExists = await usersRepositories.findOne({
-      email
+      cpf
     })
 
     if (!userAlreadyExists) {
-      throw new Error('Email or password incorrect')
+      throw new Error('cpf ou contrasenha incorreta!')
     }
 
     // Verificar si contraseña está correcta
     const passwordMatch = await compare(password, userAlreadyExists.password)
 
     if (!passwordMatch) {
-      throw new Error('Email or password incorrect')
+      throw new Error('cpf ou contrasenha incorreta!')
     }
 
     // Generar token
     const token = sign(
       {
-        email: userAlreadyExists.email
+        cpf: userAlreadyExists.cpf
       },
       '37fd5add0581f89519499ba78db0db1d',
       {

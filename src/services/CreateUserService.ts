@@ -4,34 +4,63 @@ import { hash } from 'bcryptjs'
 import { UsersRepositories } from '../repositories/UsersRepositories'
 
 interface UserProps {
-  name: string
-  email: string
+  cpf: string
+  avatar: string
+  firstName: string
+  lastName: string
+  genderId: boolean
   password: string
-  admin?: boolean
+  yearOfBirth: string
+  address: string
+  mail: string
+  mobileNumber: string
+  state: boolean
+  admin: boolean
 }
 
 class CreateUserService {
-  async execute({ name, email, admin = false, password }: UserProps) {
+  async execute({
+    cpf,
+    avatar,
+    firstName,
+    lastName,
+    genderId,
+    password,
+    yearOfBirth,
+    address,
+    mail,
+    mobileNumber,
+    state = true,
+    admin = false
+  }: UserProps) {
     const usersRepository = getCustomRepository(UsersRepositories)
 
-    if (!email) {
-      throw new Error('Email incorrect!')
+    if (!cpf) {
+      throw new Error('CPF Incorreto!')
     }
 
     const userAlreadyExists = await usersRepository.findOne({
-      email
+      cpf
     })
 
     if (userAlreadyExists) {
-      throw new Error('User already exists!')
+      throw new Error('Este usuário já existe!')
     }
 
     const passwordHash = await hash(password, 8)
 
     const user = usersRepository.create({
-      name,
-      email,
+      cpf,
+      avatar,
+      firstName,
+      lastName,
+      genderId,
       password: passwordHash,
+      yearOfBirth,
+      address,
+      mail,
+      mobileNumber,
+      state,
       admin
     })
 
