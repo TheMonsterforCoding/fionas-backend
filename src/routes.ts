@@ -26,8 +26,8 @@ const listUsersController = new ListUsersController()
 
 router.post('/users', createUserController.create)
 router.post('/login', authenticateUserController.create)
-router.get('/users', listUsersController.list)
-router.get('/users/:id', listUsersController.list)
+router.get('/users', listUsersController.listUser)
+router.get('/users/:id', listUsersController.listUserFindId)
 // router.post(
 //   '/tags',
 //   ensureAuthenticated,

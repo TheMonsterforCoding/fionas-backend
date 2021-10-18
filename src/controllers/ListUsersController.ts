@@ -1,13 +1,23 @@
 import { Request, Response } from 'express'
-import { ListUsersService } from '../services/ListUsersService'
+import { UserService } from '../services/UserService'
 
 class ListUsersController {
-  async list(request: Request, response: Response) {
-    const listUsersService = new ListUsersService()
+  async listUser(request: Request, response: Response) {
+    const userService = new UserService()
 
-    const users = await listUsersService.execute()
+    const users = await userService.listUsers()
 
     return response.json(users)
+  }
+
+  async listUserFindId(request: Request, response: Response) {
+    const { id } = request.params
+
+    const userService = new UserService()
+
+    const userById = await userService.listUserFindId(id)
+
+    return response.json(userById)
   }
 }
 
