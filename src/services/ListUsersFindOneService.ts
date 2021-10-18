@@ -3,12 +3,12 @@ import { UsersRepositories } from '../repositories/UsersRepositories'
 import { classToPlain } from 'class-transformer'
 
 class ListUsersService {
-  async execute() {
+  async execute(id: string) {
     const usersRepositories = getCustomRepository(UsersRepositories)
 
     const users = await usersRepositories.findOne({
-      id: 'exemplo@exempolo.com'
-      // Debo crear este findOne
+      id,
+      // Rota deve ser exata e só mostrar o id selecionado
     })
 
     return classToPlain(users)
