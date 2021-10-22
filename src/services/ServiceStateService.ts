@@ -21,7 +21,7 @@ class ServiceStateService {
   async listServicesState() {
     const servicesStateRepositories = getCustomRepository(ServicesStateRepositories)
 
-    const servicesState = servicesStateRepositories.find()
+    const servicesState = await servicesStateRepositories.find()
 
     return servicesState
   }
@@ -29,7 +29,7 @@ class ServiceStateService {
   async listServiceStateFindId(id: string) {
     const servicesStateRepositories = getCustomRepository(ServicesStateRepositories)
 
-    const serviceState = servicesStateRepositories.findOne(id)
+    const serviceState = await servicesStateRepositories.findOne(id)
 
     return serviceState
   }
