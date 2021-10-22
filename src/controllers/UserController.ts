@@ -6,16 +6,15 @@ class UserController {
     const {
       cpf,
       avatar,
-      firstName,
-      lastName,
-      genderId,
+      first_name,
+      last_name,
+      gender,
       password,
-      yearOfBirth,
+      year_of_birth,
       address,
       mail,
-      mobileNumber,
-      state,
-      admin
+      mobile_number,
+      state
      } = request.body
 
     const userService = new UserService()
@@ -23,16 +22,15 @@ class UserController {
     const user = await userService.createUser({
       cpf,
       avatar,
-      firstName,
-      lastName,
-      genderId,
+      first_name,
+      last_name,
+      gender,
       password,
-      yearOfBirth,
+      year_of_birth,
       address,
       mail,
-      mobileNumber,
-      state,
-      admin
+      mobile_number,
+      state
     })
 
     return response.json(user)
@@ -51,9 +49,9 @@ class UserController {
 
     const userService = new UserService()
 
-    const userById = await userService.listUserFindId(id)
+    const user = await userService.listUserFindId(id)
 
-    return response.json(userById)
+    return response.json(user)
   }
 }
 

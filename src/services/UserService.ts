@@ -6,32 +6,30 @@ import { hash } from 'bcryptjs'
 interface UserProps {
   cpf: string
   avatar: string
-  firstName: string
-  lastName: string
-  genderId: boolean
+  first_name: string
+  last_name: string
+  gender: boolean
   password: string
-  yearOfBirth: string
+  year_of_birth: number
   address: string
   mail: string
-  mobileNumber: string
+  mobile_number: number
   state: boolean
-  admin: boolean
 }
 
 class UserService {
   async createUser({
     cpf,
     avatar,
-    firstName,
-    lastName,
-    genderId,
+    first_name,
+    last_name,
+    gender,
     password,
-    yearOfBirth,
+    year_of_birth,
     address,
     mail,
-    mobileNumber,
+    mobile_number,
     state = true,
-    admin = false
   }: UserProps) {
     const usersRepository = getCustomRepository(UsersRepositories)
 
@@ -52,16 +50,15 @@ class UserService {
     const user = usersRepository.create({
       cpf,
       avatar,
-      firstName,
-      lastName,
-      genderId,
+      first_name,
+      last_name,
+      gender,
       password: passwordHash,
-      yearOfBirth,
+      year_of_birth,
       address,
       mail,
-      mobileNumber,
-      state,
-      admin
+      mobile_number,
+      state
     })
 
     await usersRepository.save(user)
@@ -84,6 +81,7 @@ class UserService {
       id
     })
 
+    // return classToPlain(user)
     return user
   }
 }

@@ -20,13 +20,20 @@ class User {
   avatar: string
 
   @Column()
-  firstName: string
+  first_name: string
 
   @Column()
-  lastName: string
+  last_name: string
 
   @Column()
-  genderId: boolean
+  gender: boolean
+
+  @Exclude()
+  @Column()
+  password: string
+
+  @Column()
+  year_of_birth: number
 
   @Column()
   address: string
@@ -35,20 +42,10 @@ class User {
   mail: string
 
   @Column()
-  mobileNumber: string
-
-  @Exclude()
-  @Column()
-  password: string
-
-  @Column()
-  yearOfBirth: string
+  mobile_number: number
 
   @Column()
   state: boolean
-
-  @Column()
-  admin: boolean
 
   @CreateDateColumn()
   created_at: Date
