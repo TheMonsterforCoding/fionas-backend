@@ -17,7 +17,7 @@ class Employee {
   description: string
 
   @Column()
-  employees_users_id: number
+  employees_users_id: string
   @JoinColumn({ name: 'employees_users_id' })
   @ManyToOne(() => User)
   EmployeesUsersId: User

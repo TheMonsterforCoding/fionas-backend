@@ -81,8 +81,8 @@ class UserService {
       id
     })
 
-    // return classToPlain(user)
-    return user
+    return classToPlain(user)
+    // return user
   }
 }
 
