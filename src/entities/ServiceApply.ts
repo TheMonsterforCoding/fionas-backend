@@ -11,7 +11,7 @@ import { Employee } from './Employee'
 import { ServiceState } from './ServiceState'
 import { Service } from './Service'
 
-@Entity('employees')
+@Entity('services_apply')
 class ServiceApply {
   @PrimaryGeneratedColumn('increment')
   id: number
