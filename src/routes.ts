@@ -9,6 +9,7 @@ import { CustomerController } from './controllers/CustomerController'
 import { CustomerHasPetController } from './controllers/CustomerHasPetController'
 import { EmployeeTypeController } from './controllers/EmployeeTypeController'
 import { EmployeeController } from './controllers/EmployeeController'
+import { ServiceStateController } from './controllers/ServiceStateController'
 
 const authenticateUserController = new AuthenticateUserController()
 const userController = new UserController()
@@ -17,6 +18,7 @@ const customerController = new CustomerController()
 const customerHasPetController = new CustomerHasPetController()
 const employeeTypeController = new EmployeeTypeController()
 const employeeController = new EmployeeController()
+const serviceStateController = new ServiceStateController()
 
 router.post('/login', authenticateUserController.create)
 
@@ -43,5 +45,9 @@ router.get('/employees_type/:id', employeeTypeController.listEmployeeTypeFindId)
 router.post('/employees', employeeController.createEmployee)
 router.get('/employees', employeeController.listEmployees)
 router.get('/employees/:id', employeeController.listEmployeeFindId)
+
+router.post('/services_state', serviceStateController.createServiceState)
+router.get('/services_state', serviceStateController.listServiceState)
+router.get('/services_state/:id', serviceStateController.listServiceStateFindId)
 
 export { router }

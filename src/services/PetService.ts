@@ -43,7 +43,7 @@ class PetService {
     return pets
   }
 
-  async listPetFindId(id: number) {
+  async listPetFindId(id: string) {
     const petsRepositories = getCustomRepository(PetsRepositories)
 
     const pet = await petsRepositories.findOne(id)
