@@ -29,6 +29,7 @@ router.post('/login', authenticateUserController.create)
 router.post('/users', userController.createUser)
 router.get('/users', userController.listUsers)
 router.get('/users/:id', userController.listUserFindId)
+router.put('/users/:id', userController.updateUserFindId)
 
 router.post('/pets', petController.createPet)
 router.get('/pets', petController.listPets)

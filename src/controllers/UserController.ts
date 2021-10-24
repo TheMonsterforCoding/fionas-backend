@@ -53,6 +53,32 @@ class UserController {
 
     return response.json(user)
   }
+
+  async updateUserFindId(request: Request, response: Response) {
+    const { id } = request.params
+    const {
+      cpf,
+      first_name,
+      last_name,
+      mail,
+      mobile_number,
+      state
+    } = request.body
+
+    const userService = new UserService()
+
+    const user = await userService.updateUserFindId(id,
+    {
+      cpf: cpf,
+      first_name: first_name,
+      last_name: last_name,
+      mail: mail,
+      mobile_number: mobile_number,
+      state: state
+    })
+
+    return response.json(user)
+  }
 }
 
 export { UserController }

@@ -18,6 +18,15 @@ interface UserProps {
   state: boolean
 }
 
+interface UserUpdateProps {
+  cpf: string
+  first_name: string
+  last_name: string
+  mail: string
+  mobile_number: number
+  state: boolean
+}
+
 class UserService {
   async createUser({
     cpf,
@@ -101,7 +110,47 @@ class UserService {
     })
 
     return classToPlain(user)
-    // return user
+  }
+
+  async updateUserFindId(id:string, {
+    cpf,
+    first_name,
+    last_name,
+    mail,
+    mobile_number,
+    state = true,
+  }: UserUpdateProps) {
+    const usersRepositories = getCustomRepository(UsersRepositories)
+
+    const data = {
+      cpf,
+      first_name,
+      last_name,
+      mail,
+      mobile_number,
+      state
+    }
+
+    const schema = Yup.object().shape({
+      cpf: Yup.string().required('CPF obrigatório'),
+      first_name: Yup.string().required('Nome obrigatório'),
+      last_name: Yup.string().required('Sobrenome obrigatório'),
+      mail: Yup.string().email('Deve ser um email válido').required('Email obrigatório'),
+      mobile_number: Yup.number().required('Número celular obrigatório'),
+      state: Yup.boolean().required('Estado obrigatório')
+    })
+
+    await schema.validate(data, {
+      abortEarly: false
+    })
+
+    await usersRepositories.update(id, data)
+
+    const userUpdated = await usersRepositories.findOne({
+      id
+    })
+
+    return classToPlain(userUpdated)
   }
 }
 
