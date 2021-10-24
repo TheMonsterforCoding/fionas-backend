@@ -1,4 +1,6 @@
 import { getCustomRepository } from 'typeorm'
+import * as Yup from 'yup'
+
 import { PetsRepositories } from '../repositories/PetsRepositories'
 
 interface PetProps {
@@ -21,14 +23,31 @@ class PetService {
   }: PetProps) {
     const petsRepositories = getCustomRepository(PetsRepositories)
 
-    const pet = petsRepositories.create({
+    /* ------------ Validar ------------ */
+    const data = {
       name,
       gender,
       year_of_birth,
       size,
       breed,
       state
+    }
+
+    const schema = Yup.object().shape({
+      name: Yup.string().required('Nome obrigatório'),
+      gender: Yup.boolean().required('Gênero obrigatório'),
+      year_of_birth: Yup.number().required('Ano de nascimento obrigatório'),
+      size: Yup.string().required('Tamanho obrigatório'),
+      breed: Yup.string().required('Raça obrigatória'),
+      state: Yup.boolean().required('Estado obrigatório'),
     })
+
+    await schema.validate(data, {
+      abortEarly: false
+    })
+    /* ---------- Fin Validación ---------- */
+
+    const pet = petsRepositories.create(data)
 
     await petsRepositories.save(pet)
 

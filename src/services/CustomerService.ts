@@ -1,4 +1,6 @@
 import { getCustomRepository } from "typeorm"
+import * as Yup from 'yup'
+
 import { CustomersRepositories } from "../repositories/CustomersRepositories"
 
 interface CustomerProps {
@@ -11,9 +13,21 @@ class CustomerService {
   }: CustomerProps) {
     const customersRepositories = getCustomRepository(CustomersRepositories)
 
-    const customer = customersRepositories.create({
+    /* ------------ Validar ------------ */
+    const data = {
       customers_users_id
+    }
+
+    const schema = Yup.object().shape({
+      customers_users_id: Yup.string().required('Id de usuário obrigatória'),
     })
+
+    await schema.validate(data, {
+      abortEarly: false
+    })
+    /* ---------- Fin Validación ---------- */
+
+    const customer = customersRepositories.create(data)
 
     await customersRepositories.save(customer)
 

@@ -1,4 +1,6 @@
 import { getCustomRepository } from "typeorm"
+import * as Yup from 'yup'
+
 import { ServicesStateRepositories } from "../repositories/ServicesStateRepositories"
 
 interface ServiceStateProps {
@@ -9,9 +11,21 @@ class ServiceStateService {
   async createServiceState({ description }: ServiceStateProps) {
     const servicesStateRepositories = getCustomRepository(ServicesStateRepositories)
 
-    const serviceState = servicesStateRepositories.create({
+    /* ------------ Validar ------------ */
+    const data = {
       description
+    }
+
+    const schema = Yup.object().shape({
+      description: Yup.string().required('Descrição obrigatória')
     })
+
+    await schema.validate(data, {
+      abortEarly: false
+    })
+    /* ---------- Fin Validación ---------- */
+
+    const serviceState = servicesStateRepositories.create(data)
 
     await servicesStateRepositories.save(serviceState)
 

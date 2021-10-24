@@ -1,4 +1,6 @@
 import { getCustomRepository } from "typeorm";
+import * as Yup from 'yup'
+
 import { EmployeesTypeRepositories } from "../repositories/EmployeesTypeRepositories";
 
 interface EmployeeTypeProps {
@@ -11,9 +13,21 @@ class EmployeeTypeService {
   }: EmployeeTypeProps) {
     const employeesTypeRepositories = getCustomRepository(EmployeesTypeRepositories)
 
-    const employeeType = employeesTypeRepositories.create({
+    /* ------------ Validar ------------ */
+    const data = {
       description
+    }
+
+    const schema = Yup.object().shape({
+      description: Yup.string().required('Descrição obrigatória'),
     })
+
+    await schema.validate(data, {
+      abortEarly: false
+    })
+    /* ---------- Fin Validación ---------- */
+
+    const employeeType = employeesTypeRepositories.create(data)
 
     await employeesTypeRepositories.save(employeeType)
 
