@@ -8,49 +8,58 @@ export class CreateUsers1625257607138 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'uuid',
+            type: 'varchar',
+            length: '36',
             isPrimary: true
           },
           {
             name: 'cpf',
-            type: 'varchar'
+            type: 'varchar',
+            length: '12',
           },
           {
             name: 'avatar',
-            type: 'varchar'
+            type: 'varchar',
+            length: '200',
           },
           {
             name: 'first_name',
-            type: 'varchar'
+            type: 'varchar',
+            length: '20',
           },
           {
             name: 'last_name',
-            type: 'varchar'
+            type: 'varchar',
+            length: '20',
           },
           {
             name: 'gender',
-            type: 'boolean',
-            default: true
+            type: 'boolean'
           },
           {
             name: 'password',
-            type: 'varchar'
+            type: 'varchar',
+            length: '100'
           },
           {
             name: 'year_of_birth',
-            type: 'number'
+            type: 'integer',
+            unsigned: true
           },
           {
             name: 'address',
-            type: 'varchar'
+            type: 'varchar',
+            length: '100'
           },
           {
             name: 'mail',
-            type: 'varchar'
+            type: 'varchar',
+            length: '100'
           },
           {
             name: 'mobile_number',
-            type: 'number'
+            type: 'varchar',
+            length: '30'
           },
           {
             name: 'state',

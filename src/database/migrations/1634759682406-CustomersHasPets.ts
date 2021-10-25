@@ -16,11 +16,13 @@ export class CustomersHasPets1634759682406 implements MigrationInterface {
           },
           {
             name: 'customers_has_pets_pets_id',
-            type: 'uuid'
+            type: 'integer',
+            unsigned: true,
           },
           {
             name: 'customers_has_pets_customers_id',
-            type: 'uuid'
+            type: 'integer',
+            unsigned: true,
           }
         ],
         foreignKeys: [
@@ -29,16 +31,16 @@ export class CustomersHasPets1634759682406 implements MigrationInterface {
             referencedTableName: 'pets',
             referencedColumnNames: ['id'],
             columnNames: ['customers_has_pets_pets_id'],
-            onDelete: 'SET NULL',
-            onUpdate: 'SET NULL'
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
           },
           {
             name: 'fk_customers_has_pets_customers_id',
             referencedTableName: 'customers',
             referencedColumnNames: ['id'],
             columnNames: ['customers_has_pets_customers_id'],
-            onDelete: 'SET NULL',
-            onUpdate: 'SET NULL'
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
           }
         ]
       })

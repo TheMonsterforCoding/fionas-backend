@@ -21,19 +21,25 @@ export class CreateServicesApply1634878778932 implements MigrationInterface {
           },
           {
             name: 'services_apply_customers_has_pets_id',
-            type: 'uuid'
+            type: 'integer',
+            unsigned: true,
           },
           {
             name: 'services_apply_employees_id',
-            type: 'uuid'
+            type: 'integer',
+            unsigned: true,
+            isNullable: true
           },
           {
             name: 'services_apply_services_state_id',
-            type: 'uuid'
+            type: 'integer',
+            unsigned: true,
+            isNullable: true
           },
           {
             name: 'services_apply_services_id',
-            type: 'uuid'
+            type: 'integer',
+            unsigned: true,
           }
         ],
         foreignKeys: [
@@ -42,8 +48,8 @@ export class CreateServicesApply1634878778932 implements MigrationInterface {
             referencedTableName: 'customers_has_pets',
             referencedColumnNames: ['id'],
             columnNames: ['services_apply_customers_has_pets_id'],
-            onDelete: 'SET NULL',
-            onUpdate: 'SET NULL'
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
           },
           {
             name: 'fk_services_apply_employees_id',
@@ -66,8 +72,8 @@ export class CreateServicesApply1634878778932 implements MigrationInterface {
             referencedTableName: 'services',
             referencedColumnNames: ['id'],
             columnNames: ['services_apply_services_id'],
-            onDelete: 'SET NULL',
-            onUpdate: 'SET NULL'
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
           }
         ]
       })

@@ -16,15 +16,19 @@ export class CreateEmployees1634759835069 implements MigrationInterface {
           },
           {
             name: 'description',
-            type: 'varchar'
+            type: 'varchar',
+            length: '250',
           },
           {
             name: 'employees_users_id',
-            type: 'uuid'
+            type: 'varchar',
+            length: '36',
           },
           {
             name: 'employees_employees_type_id',
-            type: 'uuid'
+            type: 'integer',
+            unsigned: true,
+            isNullable: true,
           }
         ],
         foreignKeys: [
@@ -33,8 +37,8 @@ export class CreateEmployees1634759835069 implements MigrationInterface {
             referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['employees_users_id'],
-            onDelete: 'SET NULL',
-            onUpdate: 'SET NULL'
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
           },
           {
             name: 'fk_employees_employees_type_id',
