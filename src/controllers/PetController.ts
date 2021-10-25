@@ -43,6 +43,32 @@ class PetController {
 
     return response.json(pet)
   }
+
+  async updateUserFindId(request: Request, response: Response) {
+    const { id } = request.params
+    const {
+      name,
+      gender,
+      year_of_birth,
+      size,
+      breed,
+      state
+    } = request.body
+
+    const petService = new PetService()
+
+    const pet = await petService.updatePetFindId(id,
+    {
+      name: name,
+      gender: gender,
+      year_of_birth: year_of_birth,
+      size: size,
+      breed: breed,
+      state: state
+    })
+
+    return response.json(pet)
+  }
 }
 
 export { PetController }

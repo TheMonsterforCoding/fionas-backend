@@ -69,6 +69,45 @@ class PetService {
 
     return pet
   }
+
+  async updatePetFindId(id:string, {
+    name,
+    gender,
+    year_of_birth,
+    size,
+    breed,
+    state = false
+  }: PetProps) {
+    const petsRepositories = getCustomRepository(PetsRepositories)
+
+    const data = {
+      name,
+      gender,
+      year_of_birth,
+      size,
+      breed,
+      state
+    }
+
+    const schema = Yup.object().shape({
+      name: Yup.string().required('Nome obrigatório'),
+      gender: Yup.boolean().required('Gênero obrigatório'),
+      year_of_birth: Yup.number().required('Ano de nascimento obrigatório'),
+      size: Yup.string().required('Tamanho obrigatório'),
+      breed: Yup.string().required('Raça obrigatório'),
+      state: Yup.boolean().required('Estado obrigatório')
+    })
+
+    await schema.validate(data, {
+      abortEarly: false
+    })
+
+    await petsRepositories.update(id, data)
+
+    const petUpdated = await petsRepositories.findOne(id)
+
+    return petUpdated
+  }
 }
 
 export { PetService }

@@ -34,6 +34,7 @@ router.put('/users/:id', userController.updateUserFindId)
 router.post('/pets', petController.createPet)
 router.get('/pets', petController.listPets)
 router.get('/pets/:id', petController.listPetFindId)
+router.put('/pets/:id', petController.updateUserFindId)
 
 router.post('/customers', customerController.createCustomer)
 router.get('/customers', customerController.listCustomers)
