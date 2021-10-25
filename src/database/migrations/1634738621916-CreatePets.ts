@@ -16,7 +16,8 @@ export class CreatePets1634738621916 implements MigrationInterface {
           },
           {
             name: 'name',
-            type: 'varchar'
+            type: 'varchar',
+            length: '45',
           },
           {
             name: 'gender',
@@ -25,15 +26,17 @@ export class CreatePets1634738621916 implements MigrationInterface {
           },
           {
             name: 'year_of_birth',
-            type: 'number'
+            type: 'integer'
           },
           {
             name: 'size',
-            type: 'varchar'
+            type: 'varchar',
+            length: '45'
           },
           {
             name: 'breed',
-            type: 'varchar'
+            type: 'varchar',
+            length: '45'
           },
           {
             name: 'state',

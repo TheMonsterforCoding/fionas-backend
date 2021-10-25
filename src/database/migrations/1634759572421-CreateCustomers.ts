@@ -21,7 +21,8 @@ export class CreateCustomers1634759572421 implements MigrationInterface {
           },
           {
             name: 'customers_users_id',
-            type: 'uuid'
+            type: 'varchar',
+            length: '36',
           }
         ],
         foreignKeys: [
@@ -30,8 +31,8 @@ export class CreateCustomers1634759572421 implements MigrationInterface {
             referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['customers_users_id'],
-            onDelete: 'SET NULL',
-            onUpdate: 'SET NULL'
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
           }
         ]
       })
