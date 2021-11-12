@@ -4,14 +4,12 @@ import * as Yup from 'yup'
 import { EmployeesRepositories } from "../repositories/EmployeesRepositories";
 
 interface EmployeeProps {
-  description: string
   employees_users_id: string
   employees_employees_type_id: number
 }
 
 class EmployeeService {
   async createEmployee({
-    description,
     employees_users_id,
     employees_employees_type_id
   }: EmployeeProps) {
@@ -19,13 +17,11 @@ class EmployeeService {
 
     /* ------------ Validar ------------ */
     const data = {
-      description,
       employees_users_id,
       employees_employees_type_id
     }
 
     const schema = Yup.object().shape({
-      description: Yup.string().required('Descrição obrigatória'),
       employees_users_id: Yup.string().required('Id de usuário obrigatória'),
       employees_employees_type_id: Yup.number().required('Id de tipo de trabalhador obrigatório'),
     })

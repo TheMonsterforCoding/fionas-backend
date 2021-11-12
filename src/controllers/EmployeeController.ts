@@ -3,13 +3,12 @@ import { EmployeeService } from '../services/EmployeeService'
 
 class EmployeeController {
   async createEmployee(request: Request, response: Response) {
-    const { description, employees_users_id, employees_employees_type_id } =
+    const { employees_users_id, employees_employees_type_id } =
       request.body
 
     const employeeService = new EmployeeService()
 
     const employee = await employeeService.createEmployee({
-      description,
       employees_users_id,
       employees_employees_type_id
     })
