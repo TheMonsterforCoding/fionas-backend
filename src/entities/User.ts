@@ -17,9 +17,6 @@ class User {
   cpf: string
 
   @Column()
-  avatar: string
-
-  @Column()
   first_name: string
 
   @Column()

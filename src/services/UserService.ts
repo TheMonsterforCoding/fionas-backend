@@ -6,7 +6,6 @@ import { hash } from 'bcryptjs'
 
 interface UserProps {
   cpf: string
-  avatar: string
   first_name: string
   last_name: string
   gender: boolean
@@ -30,7 +29,6 @@ interface UserUpdateProps {
 class UserService {
   async createUser({
     cpf,
-    avatar,
     first_name,
     last_name,
     gender,
@@ -56,7 +54,6 @@ class UserService {
 
     const data = {
       cpf,
-      avatar,
       first_name,
       last_name,
       gender,
@@ -70,7 +67,6 @@ class UserService {
 
     const schema = Yup.object().shape({
       cpf: Yup.string().required('CPF obrigatório'),
-      avatar: Yup.string().required('Imagen obrigatório'),
       first_name: Yup.string().required('Nome obrigatório'),
       last_name: Yup.string().required('Sobrenome obrigatório'),
       gender: Yup.boolean().required('Gênero obrigatório'),

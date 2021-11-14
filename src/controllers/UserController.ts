@@ -5,7 +5,6 @@ class UserController {
   async createUser(request: Request, response: Response) {
     const {
       cpf,
-      avatar,
       first_name,
       last_name,
       gender,
@@ -21,7 +20,6 @@ class UserController {
 
     const user = await userService.createUser({
       cpf,
-      avatar,
       first_name,
       last_name,
       gender,
