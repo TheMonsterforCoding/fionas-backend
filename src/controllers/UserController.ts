@@ -13,7 +13,8 @@ class UserController {
       address,
       mail,
       mobile_number,
-      state
+      state,
+      user_type
      } = request.body
 
     const userService = new UserService()
@@ -28,7 +29,8 @@ class UserController {
       address,
       mail,
       mobile_number,
-      state
+      state,
+      user_type
     })
 
     return response.json(user)
@@ -60,7 +62,8 @@ class UserController {
       last_name,
       mail,
       mobile_number,
-      state
+      state,
+      user_type
     } = request.body
 
     const userService = new UserService()
@@ -72,7 +75,8 @@ class UserController {
       last_name: last_name,
       mail: mail,
       mobile_number: mobile_number,
-      state: state
+      state: state,
+      user_type: user_type
     })
 
     return response.json(user)

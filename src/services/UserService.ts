@@ -15,6 +15,7 @@ interface UserProps {
   mail: string
   mobile_number: number
   state: boolean
+  user_type: boolean
 }
 
 interface UserUpdateProps {
@@ -24,6 +25,7 @@ interface UserUpdateProps {
   mail: string
   mobile_number: number
   state: boolean
+  user_type: boolean
 }
 
 class UserService {
@@ -38,6 +40,7 @@ class UserService {
     mail,
     mobile_number,
     state = true,
+    user_type = true
   }: UserProps) {
     const usersRepository = getCustomRepository(UsersRepositories)
 
@@ -62,7 +65,8 @@ class UserService {
       address,
       mail,
       mobile_number,
-      state
+      state,
+      user_type
     }
 
     const schema = Yup.object().shape({
@@ -75,7 +79,8 @@ class UserService {
       address: Yup.string().required('Endereço obrigatório'),
       mail: Yup.string().email('Deve ser um email válido').required('Email obrigatório'),
       mobile_number: Yup.number().required('Número celular obrigatório'),
-      state: Yup.boolean().required('Estado obrigatório')
+      state: Yup.boolean().required('Estado obrigatório'),
+      user_type: Yup.boolean().required('Tipo de usuario obrigatório')
     })
 
     await schema.validate(data, {
@@ -115,6 +120,7 @@ class UserService {
     mail,
     mobile_number,
     state = true,
+    user_type = true
   }: UserUpdateProps) {
     const usersRepositories = getCustomRepository(UsersRepositories)
 
@@ -124,7 +130,8 @@ class UserService {
       last_name,
       mail,
       mobile_number,
-      state
+      state,
+      user_type
     }
 
     const schema = Yup.object().shape({
@@ -133,7 +140,8 @@ class UserService {
       last_name: Yup.string().required('Sobrenome obrigatório'),
       mail: Yup.string().email('Deve ser um email válido').required('Email obrigatório'),
       mobile_number: Yup.number().required('Número celular obrigatório'),
-      state: Yup.boolean().required('Estado obrigatório')
+      state: Yup.boolean().required('Estado obrigatório'),
+      user_type: Yup.boolean().required('Tipo de usuario obrigatório')
     })
 
     await schema.validate(data, {

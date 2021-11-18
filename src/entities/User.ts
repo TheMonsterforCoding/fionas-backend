@@ -44,6 +44,9 @@ class User {
   @Column()
   state: boolean
 
+  @Column()
+  user_type: boolean
+
   @CreateDateColumn()
   created_at: Date
 
