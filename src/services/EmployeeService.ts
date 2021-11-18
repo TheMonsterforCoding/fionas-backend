@@ -49,7 +49,11 @@ class EmployeeService {
   async listEmployeeFindId(id: string) {
     const employeesRepositories = getCustomRepository(EmployeesRepositories)
 
-    const employee = await employeesRepositories.findOne(id)
+    // const employee = await employeesRepositories.findOne(id)
+    const employee = await employeesRepositories.find({
+      where: {id},
+      relations: ['EmployeesUsersId', 'EmployeesEmployeesTypeId'],
+    })
 
     return employee
   }
