@@ -3,7 +3,10 @@ import { ServiceApplyService } from "../services/ServiceApplyService";
 
 class ServiceApplyController {
   async createServiceApply(request: Request, response: Response) {
+    //return request.body;
     const {
+      part_day,
+      date,
       services_apply_customers_has_pets_id,
       services_apply_employees_id,
       services_apply_services_state_id,
@@ -12,7 +15,9 @@ class ServiceApplyController {
 
     const serviceApplyService = new ServiceApplyService()
 
-    const serviceApply = await serviceApplyService.createServiceAplly({
+    const serviceApply = await serviceApplyService.createServiceApply({
+      part_day,
+      date,
       services_apply_customers_has_pets_id,
       services_apply_employees_id,
       services_apply_services_state_id,

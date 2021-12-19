@@ -4,6 +4,8 @@ import * as Yup from 'yup'
 import { ServicesApplyRepositories } from "../repositories/ServicesApplyRepositories";
 
 interface ServiceApplyProps {
+  part_day: string
+  date: Date
   services_apply_customers_has_pets_id: number
   services_apply_employees_id: number
   services_apply_services_state_id: number
@@ -11,7 +13,9 @@ interface ServiceApplyProps {
 }
 
 class ServiceApplyService {
-  async createServiceAplly({
+  async createServiceApply({
+    part_day,
+    date,
     services_apply_customers_has_pets_id,
     services_apply_employees_id,
     services_apply_services_state_id,
@@ -21,6 +25,8 @@ class ServiceApplyService {
 
     /* ------------ Validar ------------ */
     const data = {
+      part_day,
+      date,
       services_apply_customers_has_pets_id,
       services_apply_employees_id,
       services_apply_services_state_id,
@@ -28,8 +34,10 @@ class ServiceApplyService {
     }
 
     const schema = Yup.object().shape({
+      date: Yup.date().required('Data obrigatória'),
+      part_day: Yup.string().required('Parte do dia obrigatório'),
       services_apply_customers_has_pets_id: Yup.number().required('Id do pet obrigatório'),
-      services_apply_employees_id: Yup.number().required('Id do empregado obrigatório'),
+      services_apply_employees_id: Yup.number(),
       services_apply_services_state_id: Yup.number().required('Id do estado do serviço obrigatório'),
       services_apply_services_id: Yup.number().required('Id do serviço obrigatório')
     })
@@ -40,6 +48,8 @@ class ServiceApplyService {
     /* ---------- Fin Validación ---------- */
 
     const serviceApply = servicesApplyRepositories.create({
+      date,
+      part_day,
       services_apply_customers_has_pets_id,
       services_apply_employees_id,
       services_apply_services_state_id,

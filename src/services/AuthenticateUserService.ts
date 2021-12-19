@@ -30,8 +30,9 @@ class AuthenticateUserService {
     }
 
     //Obtener tipo de usuario
+    let user_cpf = userAlreadyExists.cpf
     let user_type = userAlreadyExists.user_type
-    let cpf_id = userAlreadyExists.cpf
+    let user_id = userAlreadyExists.id
 
     // Generar token
     const token = sign(
@@ -45,7 +46,7 @@ class AuthenticateUserService {
       }
     )
 
-    return [cpf_id, user_type, token]
+    return [user_cpf, user_id, user_type, token]
   }
 }
 
