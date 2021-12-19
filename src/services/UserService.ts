@@ -143,16 +143,14 @@ class UserService {
     }
 
     const schema = Yup.object().shape({
-      cpf: Yup.string().required('CPF obrigatório'),
-      first_name: Yup.string().required('Nome obrigatório'),
-      last_name: Yup.string().required('Sobrenome obrigatório'),
-      mail: Yup.string()
-        .email('Deve ser um email válido')
-        .required('Email obrigatório'),
-      mobile_number: Yup.number().required('Número celular obrigatório'),
-      state: Yup.boolean().required('Estado obrigatório'),
-      user_type: Yup.boolean().required('Tipo de usuario obrigatório'),
-      password: Yup.string().required('Senha obrigatória')
+      cpf: Yup.string(),
+      first_name: Yup.string(),
+      last_name: Yup.string(),
+      mail: Yup.string().email('Deve ser um email válido'),
+      mobile_number: Yup.number(),
+      state: Yup.boolean(),
+      user_type: Yup.boolean(),
+      password: Yup.string()
     })
 
     await schema.validate(data, {
