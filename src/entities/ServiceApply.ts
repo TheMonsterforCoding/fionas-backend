@@ -16,6 +16,12 @@ class ServiceApply {
   @PrimaryGeneratedColumn('increment')
   id: number
 
+  @Column()
+  date: Date
+
+  @Column()
+  part_day: string
+  
   @CreateDateColumn()
   created_at: Date
 
