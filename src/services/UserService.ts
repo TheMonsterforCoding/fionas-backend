@@ -26,6 +26,7 @@ interface UserUpdateProps {
   mobile_number: number
   state: boolean
   user_type: boolean
+  password: string
 }
 
 class UserService {
@@ -74,10 +75,12 @@ class UserService {
       first_name: Yup.string().required('Nome obrigatório'),
       last_name: Yup.string().required('Sobrenome obrigatório'),
       gender: Yup.boolean().required('Gênero obrigatório'),
-      password: Yup.string().min(10).required('Contrasenha obrigatória'),
+      password: Yup.string().min(6).required('Contrasenha obrigatória'),
       year_of_birth: Yup.number().required('Ano de nacimiento obrigatório'),
       address: Yup.string().required('Endereço obrigatório'),
-      mail: Yup.string().email('Deve ser um email válido').required('Email obrigatório'),
+      mail: Yup.string()
+        .email('Deve ser um email válido')
+        .required('Email obrigatório'),
       mobile_number: Yup.number().required('Número celular obrigatório'),
       state: Yup.boolean().required('Estado obrigatório'),
       user_type: Yup.boolean().required('Tipo de usuario obrigatório')
@@ -113,15 +116,19 @@ class UserService {
     return classToPlain(user)
   }
 
-  async updateUserFindId(id:string, {
-    cpf,
-    first_name,
-    last_name,
-    mail,
-    mobile_number,
-    state = true,
-    user_type = true
-  }: UserUpdateProps) {
+  async updateUserFindId(
+    id: string,
+    {
+      cpf,
+      first_name,
+      last_name,
+      mail,
+      mobile_number,
+      state = true,
+      user_type = true,
+      password
+    }: UserUpdateProps
+  ) {
     const usersRepositories = getCustomRepository(UsersRepositories)
 
     const data = {
@@ -131,17 +138,21 @@ class UserService {
       mail,
       mobile_number,
       state,
-      user_type
+      user_type,
+      password
     }
 
     const schema = Yup.object().shape({
       cpf: Yup.string().required('CPF obrigatório'),
       first_name: Yup.string().required('Nome obrigatório'),
       last_name: Yup.string().required('Sobrenome obrigatório'),
-      mail: Yup.string().email('Deve ser um email válido').required('Email obrigatório'),
+      mail: Yup.string()
+        .email('Deve ser um email válido')
+        .required('Email obrigatório'),
       mobile_number: Yup.number().required('Número celular obrigatório'),
       state: Yup.boolean().required('Estado obrigatório'),
-      user_type: Yup.boolean().required('Tipo de usuario obrigatório')
+      user_type: Yup.boolean().required('Tipo de usuario obrigatório'),
+      password: Yup.string().required('Senha obrigatória')
     })
 
     await schema.validate(data, {

@@ -15,7 +15,7 @@ class UserController {
       mobile_number,
       state,
       user_type
-     } = request.body
+    } = request.body
 
     const userService = new UserService()
 
@@ -63,20 +63,21 @@ class UserController {
       mail,
       mobile_number,
       state,
-      user_type
+      user_type,
+      password
     } = request.body
 
     const userService = new UserService()
 
-    const user = await userService.updateUserFindId(id,
-    {
+    const user = await userService.updateUserFindId(id, {
       cpf: cpf,
       first_name: first_name,
       last_name: last_name,
       mail: mail,
       mobile_number: mobile_number,
       state: state,
-      user_type: user_type
+      user_type: user_type,
+      password: password
     })
 
     return response.json(user)
