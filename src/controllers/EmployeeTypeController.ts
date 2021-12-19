@@ -31,6 +31,22 @@ class EmployeeTypeController {
 
     return response.json(employeetype)
   }
+
+  async updateEmployeeType(request: Request, response: Response) {
+    const { id } = request.params
+    const { description } = request.body
+
+    const employeeTypeService = new EmployeeTypeService()
+
+    const employeeType = await employeeTypeService.updateEmployeeTypeFindId(
+      id,
+      {
+        description: description
+      }
+    )
+
+    return response.json(employeeType)
+  }
 }
 
 export { EmployeeTypeController }

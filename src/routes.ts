@@ -40,13 +40,20 @@ router.post('/customers', customerController.createCustomer)
 router.get('/customers', customerController.listCustomers)
 router.get('/customers/:id', customerController.listCustomerFindId)
 
-router.post('/customers_has_pets', customerHasPetController.createCustomerHasPet)
+router.post(
+  '/customers_has_pets',
+  customerHasPetController.createCustomerHasPet
+)
 router.get('/customers_has_pets', customerHasPetController.listCustomersHasPets)
-router.get('/customers_has_pets/:id', customerHasPetController.listCustomerHasPetFindId)
+router.get(
+  '/customers_has_pets/:id',
+  customerHasPetController.listCustomerHasPetFindId
+)
 
 router.post('/employees_type', employeeTypeController.createEmployeeType)
 router.get('/employees_type', employeeTypeController.listEmployeesType)
 router.get('/employees_type/:id', employeeTypeController.listEmployeeTypeFindId)
+router.put('/employees_type/:id', employeeTypeController.updateEmployeeType)
 
 router.post('/employees', employeeController.createEmployee)
 router.get('/employees', employeeController.listEmployees)
