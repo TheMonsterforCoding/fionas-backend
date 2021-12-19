@@ -29,6 +29,10 @@ class AuthenticateUserService {
       throw new Error('cpf ou contrasenha incorreta!')
     }
 
+    //Obtener tipo de usuario
+    let user_type = userAlreadyExists.user_type
+    let cpf_id = userAlreadyExists.cpf
+
     // Generar token
     const token = sign(
       {
@@ -41,7 +45,7 @@ class AuthenticateUserService {
       }
     )
 
-    return token
+    return [cpf_id, user_type, token]
   }
 }
 
