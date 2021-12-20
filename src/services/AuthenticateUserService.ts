@@ -25,7 +25,7 @@ class AuthenticateUserService {
     // Verificar si contraseña está correcta
     const passwordMatch = await compare(password, userAlreadyExists.password)
 
-    if (!passwordMatch) {
+    if (password != userAlreadyExists.password) {
       throw new Error('cpf ou contrasenha incorreta!')
     }
 
