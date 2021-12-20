@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { ServiceApplyService } from "../services/ServiceApplyService";
+import { Request, Response } from 'express'
+import { ServiceApplyService } from '../services/ServiceApplyService'
 
 class ServiceApplyController {
   async createServiceApply(request: Request, response: Response) {
@@ -41,6 +41,19 @@ class ServiceApplyController {
     const serviceApplyService = new ServiceApplyService()
 
     const serviceApply = await serviceApplyService.listServiceApplyFindId(id)
+
+    return response.json(serviceApply)
+  }
+
+  async updateServiceAppyFindId(request: Request, response: Response) {
+    const { id } = request.params
+    const { services_apply_services_state_id } = request.body
+
+    const serviceApplyService = new ServiceApplyService()
+
+    const serviceApply = await serviceApplyService.updateServicesApply(id, {
+      services_apply_services_state_id: services_apply_services_state_id
+    })
 
     return response.json(serviceApply)
   }

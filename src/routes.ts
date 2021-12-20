@@ -70,5 +70,9 @@ router.get('/services/:id', serviceController.listServiceFindId)
 router.post('/services_apply', serviceApplyController.createServiceApply)
 router.get('/services_apply', serviceApplyController.listServicesApply)
 router.get('/services_apply/:id', serviceApplyController.listServiceApplyFindId)
+router.put(
+  '/services_apply/:id',
+  serviceApplyController.updateServiceAppyFindId
+)
 
 export { router }
