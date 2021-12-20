@@ -25,7 +25,7 @@ class User {
   @Column()
   gender: boolean
 
-  @Exclude()
+  // @Exclude()
   @Column()
   password: string
 

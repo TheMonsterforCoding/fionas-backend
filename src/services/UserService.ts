@@ -54,14 +54,15 @@ class UserService {
       throw new Error('Este usuário já existe!')
     }
 
-    const passwordHash = await hash(password, 8)
+    // const passwordHash = await hash(password, 8)
 
     const data = {
       cpf,
       first_name,
       last_name,
       gender,
-      password: passwordHash,
+      // password: passwordHash,
+      password,
       year_of_birth,
       address,
       mail,
